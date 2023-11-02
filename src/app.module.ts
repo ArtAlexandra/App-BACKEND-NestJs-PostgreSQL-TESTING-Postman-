@@ -5,6 +5,10 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from "@nestjs/config";
 import { User } from "./users/users.model";
 import { UsersController } from './users/users.controller';
+import { RolesModule } from './roles/roles.module';
+import { Role } from "./roles/roles.model";
+import { UserRoles } from "./roles/user-roles.model";
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -23,7 +27,7 @@ import { UsersController } from './users/users.controller';
           username: process.env.POSTGRES_USER,// 'postgres'
           password: process.env.POSTGRES_PASSWORD,// 'root'
           database: process.env.POSTGRES_DB,// 'Test2'
-          models: [User],
+          models: [User, Role,UserRoles],
          autoLoadModels: true,
         
        //  synchronize:true,
@@ -31,6 +35,8 @@ import { UsersController } from './users/users.controller';
         
         }),
         UsersModule,
+        RolesModule,
+        AuthModule,
       ],
     //controllers: [UsersController],
     //providers: [],
